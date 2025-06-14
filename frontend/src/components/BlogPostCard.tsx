@@ -17,13 +17,8 @@ import {
   TrendingDown,
   ArrowForward,
 } from '@mui/icons-material';
-import dayjs from 'dayjs';
-import 'dayjs/locale/ja';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { BlogPost } from '@/types';
-
-dayjs.extend(relativeTime);
-dayjs.locale('ja');
+import FormattedDate from './FormattedDate';
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -88,8 +83,8 @@ const BlogPostCard = ({ post, onClick }: BlogPostCardProps) => {
                 fontWeight: 600,
                 lineHeight: 1.3,
                 display: '-webkit-box',
-                '-webkit-line-clamp': 2,
-                '-webkit-box-orient': 'vertical',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}
             >
@@ -120,9 +115,7 @@ const BlogPostCard = ({ post, onClick }: BlogPostCardProps) => {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <Schedule sx={{ fontSize: 16, color: 'text.secondary' }} />
-              <Typography variant="caption" color="text.secondary">
-                {dayjs(post.publishedAt).fromNow()}
-              </Typography>
+              <FormattedDate date={post.publishedAt} />
             </Box>
           </Box>
         </Box>
@@ -134,8 +127,8 @@ const BlogPostCard = ({ post, onClick }: BlogPostCardProps) => {
           sx={{ 
             mb: 2,
             display: '-webkit-box',
-            '-webkit-line-clamp': 3,
-            '-webkit-box-orient': 'vertical',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
             overflow: 'hidden',
             lineHeight: 1.5,
           }}
